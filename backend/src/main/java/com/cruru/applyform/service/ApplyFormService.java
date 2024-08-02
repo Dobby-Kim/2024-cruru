@@ -27,31 +27,37 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class ApplyFormService {
 
-    private static final String APPLY_FORM_BASE_URL = "www.cruru.kr/applyform/";private final ApplicantRepository applicantRepository;
-    private final AnswerRepository answerRepository;private final QuestionRepository questionRepository;
-    private final ApplyFormRepository applyFormRepository;
-    private final ProcessRepository processRepository;
+    private static final String APPLY_FORM_BASE_URL = "www.cruru.kr/applyform/";
 
-    @Transactional public ApplyForm create(ApplyFormCreateRequest request, Dashboard createdDashboard) {
+    private final ApplicantRepository applicantRepository;
+
+        private final AnswerRepository answerRepository;private final QuestionRepository questionRepository;
+
+    private final ApplyFormRepository applyFormRepository;
+        private final ProcessRepository processRepository;
+
+    @Transactional public ApplyForm create(ApplyFormCreateRequest request,
+                                           Dashboard createdDashboard) {
             ApplyForm applyForm = toApplyForm(request, createdDashboard);
 
-        ApplyForm savedApplyForm = applyFormRepository.save(applyForm);
-        Long savedId = savedApplyForm.getId();
-        String generatedUrl = APPLY_FORM_BASE_URL + savedId;
-        savedApplyForm.setUrl(generatedUrl);
+            ApplyForm savedApplyForm = applyFormRepository.save(applyForm);
+            Long savedId = savedApplyForm.getId();
+            String generatedUrl = APPLY_FORM_BASE_URL + savedId;
+            savedApplyForm.setUrl(generatedUrl);
 
-        return savedApplyForm;
-    }
+            return savedApplyForm;
+     }
 
     private ApplyForm toApplyForm(
             ApplyFormCreateRequest request, Dashboard createdDashboard) {
-        return new ApplyForm(request.title(), request.postingContent(), request.startDate(), request.dueDate(), createdDashboard
+            return new ApplyForm(request.title(),
+                    request.postingContent(), request.startDate(), request.dueDate(), createdDashboard
         );
     }
 
-    public void submit(ApplyFormSubmitRequest request, long applyFormId)
+    public void submit (ApplyFormSubmitRequest request.  , long applyFormId)
     {
-        validatePersonalDataCollection(request);
+        validatePersonalDataCollection( request  );
 
             ApplyForm applyForm = applyFormRepository.findById(applyFormId)
                 .orElseThrow(ApplyFormNotFoundException::new);
@@ -75,7 +81,8 @@ public class ApplyFormService {
     }
 
     private void validatePersonalDataCollection(ApplyFormSubmitRequest request) {
-        if (!request.personalDataCollection()) throw new PersonalDataProcessingException();
+        if (!request.personalDataCollection())
+            throw new PersonalDataProcessingException();
 
     }
 
