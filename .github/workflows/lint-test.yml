@@ -17,7 +17,7 @@ jobs:
 
       - uses: notdevcody/intellij-format-action@v1.1
         with:
-          path: './backend/src'
+          path: './backend'
           commit-on-changes: 'true'
           commit-message: '코드 컨벤션 확인해라'
-          style-settings-file: '${{ github.workspace }}/backend/code-style-format.xml'
+          style-settings-file: './code-style-format.xml'
