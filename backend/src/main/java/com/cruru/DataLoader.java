@@ -70,7 +70,8 @@ public class DataLoader implements ApplicationRunner {
         LocalDateTime dueDate = LocalDateTime.MAX;
         dashboardRepository.save(dashboard);
         ApplyForm applyForm = new ApplyForm(1L, "크루루 모집 공고", "# 모집 설명이다.", "www.cruru.kr/form/1", startDate, dueDate,
-                dashboard);
+                dashboard
+        );
         applyFormRepository.save(applyForm);
 
         Process firstProcess = new Process(1L, 0, "서류 전형", "지원 서류를 확인한다.", dashboard);

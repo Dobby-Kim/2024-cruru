@@ -35,7 +35,8 @@ class QuestionRepositoryTest {
         questionRepository.save(updateQuestion);
 
         //then
-        Question findQuestion = questionRepository.findById(saved.getId()).get();
+        Question findQuestion = questionRepository.findById(saved.getId())
+                .get();
         assertThat(findQuestion.getContent()).isEqualTo("전공");
         assertThat(findQuestion.getSequence()).isEqualTo(1);
     }

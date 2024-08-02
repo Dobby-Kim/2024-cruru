@@ -85,9 +85,10 @@ class ApplicantServiceTest extends ServiceTest {
 
         // then
         List<Applicant> actualApplicants = entityManager.createQuery(
-                        "SELECT a FROM Applicant a JOIN FETCH a.process", Applicant.class)
+                "SELECT a FROM Applicant a JOIN FETCH a.process", Applicant.class)
                 .getResultList();
-        assertThat(actualApplicants).allMatch(applicant -> applicant.getProcess().equals(afterProcess));
+        assertThat(actualApplicants).allMatch(applicant -> applicant.getProcess()
+                .equals(afterProcess));
     }
 
     @DisplayName("id로 지원자를 찾는다.")
@@ -146,8 +147,10 @@ class ApplicantServiceTest extends ServiceTest {
         //then
         List<QnaResponse> qnaResponses = applicantDetailResponse.qnaResponses();
         assertAll(
-                () -> assertThat(qnaResponses.get(0).question()).isEqualTo(question.getContent()),
-                () -> assertThat(qnaResponses.get(0).answer()).isEqualTo(answer.getContent())
+                () -> assertThat(qnaResponses.get(0)
+                        .question()).isEqualTo(question.getContent()),
+                () -> assertThat(qnaResponses.get(0)
+                        .answer()).isEqualTo(answer.getContent())
         );
     }
 
@@ -161,7 +164,9 @@ class ApplicantServiceTest extends ServiceTest {
         applicantService.reject(applicant.getId());
 
         // then
-        assertThat(applicantRepository.findById(applicant.getId()).get().getIsRejected()).isTrue();
+        assertThat(applicantRepository.findById(applicant.getId())
+                .get()
+                .getIsRejected()).isTrue();
     }
 
     @DisplayName("이미 불합격한 지원자를 불합격시키려 하면 예외가 발생한다.")

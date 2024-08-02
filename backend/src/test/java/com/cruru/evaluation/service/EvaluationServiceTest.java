@@ -61,8 +61,10 @@ class EvaluationServiceTest extends ServiceTest {
         List<Evaluation> evaluations = evaluationRepository.findAllByProcessAndApplicant(process, applicant);
         assertAll(
                 () -> assertThat(evaluations).hasSize(1),
-                () -> assertThat(evaluations.get(0).getScore()).isEqualTo(score),
-                () -> assertThat(evaluations.get(0).getContent()).isEqualTo(content)
+                () -> assertThat(evaluations.get(0)
+                        .getScore()).isEqualTo(score),
+                () -> assertThat(evaluations.get(0)
+                        .getContent()).isEqualTo(content)
         );
     }
 
@@ -81,9 +83,12 @@ class EvaluationServiceTest extends ServiceTest {
         // then
         assertAll(
                 () -> assertThat(responses).hasSize(1),
-                () -> assertThat(responses.get(0).evaluationId()).isEqualTo(evaluation.getId()),
-                () -> assertThat(responses.get(0).score()).isEqualTo(score),
-                () -> assertThat(responses.get(0).content()).isEqualTo(content)
+                () -> assertThat(responses.get(0)
+                        .evaluationId()).isEqualTo(evaluation.getId()),
+                () -> assertThat(responses.get(0)
+                        .score()).isEqualTo(score),
+                () -> assertThat(responses.get(0)
+                        .content()).isEqualTo(content)
         );
     }
 }

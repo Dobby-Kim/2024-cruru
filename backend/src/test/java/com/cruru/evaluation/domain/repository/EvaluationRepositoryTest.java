@@ -35,7 +35,8 @@ class EvaluationRepositoryTest {
         evaluationRepository.save(updatedEvaluation);
 
         //then
-        Evaluation findEvaluation = evaluationRepository.findById(saved.getId()).get();
+        Evaluation findEvaluation = evaluationRepository.findById(saved.getId())
+                .get();
         assertThat(findEvaluation.getScore()).isEqualTo(5);
         assertThat(findEvaluation.getContent()).isEqualTo("포트폴리오가 인상 깊었습니다.");
     }

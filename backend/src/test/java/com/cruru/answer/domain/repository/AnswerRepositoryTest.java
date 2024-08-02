@@ -33,7 +33,8 @@ class AnswerRepositoryTest {
         answerRepository.save(updateAnswer);
 
         //then
-        Answer foundAnswer = answerRepository.findById(saved.getId()).get();
+        Answer foundAnswer = answerRepository.findById(saved.getId())
+                .get();
         assertThat(foundAnswer.getContent()).isEqualTo("음악 전공입니다.");
     }
 

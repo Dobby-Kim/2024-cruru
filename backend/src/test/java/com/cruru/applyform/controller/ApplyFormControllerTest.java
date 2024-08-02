@@ -58,11 +58,17 @@ class ApplyFormControllerTest extends ControllerTest {
         );
 
         // when&then
-        RestAssured.given().log().all()
+        RestAssured.given()
+                .log()
+                .all()
                 .contentType(ContentType.JSON)
                 .body(request)
-                .when().post("/v1/applyform/{apply_form_id}/submit", applyForm.getId())
-                .then().log().all().statusCode(201);
+                .when()
+                .post("/v1/applyform/{apply_form_id}/submit", applyForm.getId())
+                .then()
+                .log()
+                .all()
+                .statusCode(201);
     }
 
     @DisplayName("지원서 폼 제출 시, 개인정보 활용을 거부할 경우 400을 반환한다.")
@@ -85,11 +91,17 @@ class ApplyFormControllerTest extends ControllerTest {
         );
 
         // when&then
-        RestAssured.given().log().all()
+        RestAssured.given()
+                .log()
+                .all()
                 .contentType(ContentType.JSON)
                 .body(request)
-                .when().post("/v1/applyform/{apply_form_id}/submit", applyForm.getId())
-                .then().log().all().statusCode(400);
+                .when()
+                .post("/v1/applyform/{apply_form_id}/submit", applyForm.getId())
+                .then()
+                .log()
+                .all()
+                .statusCode(400);
     }
 
     @DisplayName("지원서 폼 제출 시, 대시보드에 프로세스가 존재하지 않으면 500을 반환한다.")
@@ -107,10 +119,16 @@ class ApplyFormControllerTest extends ControllerTest {
         );
 
         // when&then
-        RestAssured.given().log().all()
+        RestAssured.given()
+                .log()
+                .all()
                 .contentType(ContentType.JSON)
                 .body(request)
-                .when().post("/v1/applyform/{apply_form_id}/submit", applyForm.getId())
-                .then().log().all().statusCode(500);
+                .when()
+                .post("/v1/applyform/{apply_form_id}/submit", applyForm.getId())
+                .then()
+                .log()
+                .all()
+                .statusCode(500);
     }
 }

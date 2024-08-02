@@ -51,7 +51,8 @@ class ApplyFormRepositoryTest {
         ));
 
         // then
-        ApplyForm actualApplyForm = applyFormRepository.findById(expectedApplyForm.getId()).get();
+        ApplyForm actualApplyForm = applyFormRepository.findById(expectedApplyForm.getId())
+                .get();
         assertAll(() -> {
             assertThat(actualApplyForm.getDashboard()).isEqualTo(applyForm.getDashboard());
 

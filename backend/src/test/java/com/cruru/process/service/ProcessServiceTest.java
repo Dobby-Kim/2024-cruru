@@ -63,13 +63,18 @@ class ProcessServiceTest extends ServiceTest {
         ProcessesResponse byDashboardId = processService.findByDashboardId(dashboard.getId());
 
         // then
-        ProcessResponse firstProcessResponse = byDashboardId.processResponses().get(0);
+        ProcessResponse firstProcessResponse = byDashboardId.processResponses()
+                .get(0);
         assertAll(
                 () -> assertThat(byDashboardId.processResponses()).hasSize(1),
                 () -> assertThat(firstProcessResponse.processId()).isEqualTo(process.getId()),
-                () -> assertThat(firstProcessResponse.dashboardApplicantResponses().get(0).applicantId()).isEqualTo(
+                () -> assertThat(firstProcessResponse.dashboardApplicantResponses()
+                        .get(0)
+                        .applicantId()).isEqualTo(
                         applicant.getId()),
-                () -> assertThat(firstProcessResponse.dashboardApplicantResponses().get(0).evaluationCount()).isEqualTo(
+                () -> assertThat(firstProcessResponse.dashboardApplicantResponses()
+                        .get(0)
+                        .evaluationCount()).isEqualTo(
                         1)
         );
     }
@@ -104,7 +109,8 @@ class ProcessServiceTest extends ServiceTest {
                 .toList();
 
         assertThat(allByDashboardId).hasSize(3);
-        assertThat(allByDashboardId.get(1).getName()).isEqualTo("1차 면접");
+        assertThat(allByDashboardId.get(1)
+                .getName()).isEqualTo("1차 면접");
     }
 
     @DisplayName("프로세스 최대 개수를 초과하면, 예외가 발생한다.")

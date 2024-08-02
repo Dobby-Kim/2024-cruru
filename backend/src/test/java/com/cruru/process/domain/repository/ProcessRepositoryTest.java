@@ -35,7 +35,8 @@ class ProcessRepositoryTest {
         processRepository.save(updatedProcess);
 
         //then
-        Process findProcess = processRepository.findById(saved.getId()).get();
+        Process findProcess = processRepository.findById(saved.getId())
+                .get();
         assertThat(findProcess.getSequence()).isEqualTo(1);
         assertThat(findProcess.getName()).isEqualTo("새로운 면접");
         assertThat(findProcess.getDescription()).isEqualTo("대면 면접");

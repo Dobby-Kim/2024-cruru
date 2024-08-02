@@ -17,10 +17,16 @@ class MemberControllerTest extends ControllerTest {
         MemberCreateRequest request = new MemberCreateRequest("mail@mail.com", "qwer1234", "01012341234");
 
         // when&then
-        RestAssured.given().log().all()
+        RestAssured.given()
+                .log()
+                .all()
                 .contentType(ContentType.JSON)
                 .body(request)
-                .when().post("/v1/members")
-                .then().log().all().statusCode(201);
+                .when()
+                .post("/v1/members")
+                .then()
+                .log()
+                .all()
+                .statusCode(201);
     }
 }

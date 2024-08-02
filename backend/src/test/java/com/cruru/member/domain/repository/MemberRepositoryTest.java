@@ -34,7 +34,8 @@ class MemberRepositoryTest {
         memberRepository.save(updateMember);
 
         //then
-        Member findMember = memberRepository.findById(saved.getId()).get();
+        Member findMember = memberRepository.findById(saved.getId())
+                .get();
         assertThat(findMember.getPassword()).isEqualTo("newPassword");
         assertThat(findMember.getPhone()).isEqualTo("newPhoneNumber");
     }

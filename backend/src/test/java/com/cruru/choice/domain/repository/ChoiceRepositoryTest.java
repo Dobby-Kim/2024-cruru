@@ -33,7 +33,8 @@ class ChoiceRepositoryTest {
         choiceRepository.save(updateChoice);
 
         //then
-        Choice findChoice = choiceRepository.findById(saved.getId()).get();
+        Choice findChoice = choiceRepository.findById(saved.getId())
+                .get();
         assertThat(findChoice.getContent()).isEqualTo("여자");
     }
 

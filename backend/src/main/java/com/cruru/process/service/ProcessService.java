@@ -89,10 +89,11 @@ public class ProcessService {
                 .forEach(Process::increaseSequenceNumber);
 
         processRepository.save(new Process(
-                request.sequence(),
-                request.name(),
-                request.description(),
-                dashboard)
+                        request.sequence(),
+                        request.name(),
+                        request.description(),
+                        dashboard
+                )
         );
     }
 

@@ -29,7 +29,8 @@ public class ProcessController {
     @GetMapping
     public ResponseEntity<ProcessesResponse> read(@RequestParam(name = "dashboard_id") Long dashboardId) {
         ProcessesResponse processes = processService.findByDashboardId(dashboardId);
-        return ResponseEntity.ok().body(processes);
+        return ResponseEntity.ok()
+                .body(processes);
     }
 
     @PostMapping
@@ -38,7 +39,8 @@ public class ProcessController {
             @RequestBody @Valid ProcessCreateRequest request
     ) {
         processService.create(request, dashboardId);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .build();
     }
 
     @PatchMapping("/{process_id}")
@@ -47,12 +49,14 @@ public class ProcessController {
             @RequestBody @Valid ProcessUpdateRequest request
     ) {
         ProcessResponse response = processService.update(request, processId);
-        return ResponseEntity.ok().body(response);
+        return ResponseEntity.ok()
+                .body(response);
     }
 
     @DeleteMapping("/{process_id}")
     public ResponseEntity<Void> delete(@PathVariable(name = "process_id") Long processId) {
         processService.delete(processId);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.noContent()
+                .build();
     }
 }
