@@ -28,28 +28,24 @@ public class ApplicantController {
             @RequestBody @Valid ApplicantMoveRequest moveRequest
     ) {
         applicantService.updateApplicantProcess(processId, moveRequest);
-        return ResponseEntity.ok()
-                .build();
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/{applicant_id}")
     public ResponseEntity<ApplicantBasicResponse> read(@PathVariable("applicant_id") Long applicantId) {
         ApplicantBasicResponse applicantResponse = applicantService.findById(applicantId);
-        return ResponseEntity.ok()
-                .body(applicantResponse);
+        return ResponseEntity.ok().body(applicantResponse);
     }
 
     @GetMapping("/{applicant_id}/detail")
     public ResponseEntity<ApplicantDetailResponse> readDetail(@PathVariable("applicant_id") Long applicantId) {
         ApplicantDetailResponse applicantDetailResponse = applicantService.findDetailById(applicantId);
-        return ResponseEntity.ok()
-                .body(applicantDetailResponse);
+        return ResponseEntity.ok().body(applicantDetailResponse);
     }
 
     @PatchMapping("/{applicant_id}/reject")
     public ResponseEntity<ApplicantDetailResponse> reject(@PathVariable("applicant_id") Long applicantId) {
         applicantService.reject(applicantId);
-        return ResponseEntity.ok()
-                .build();
+        return ResponseEntity.ok().build();
     }
 }
