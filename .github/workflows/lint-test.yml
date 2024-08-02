@@ -20,4 +20,4 @@ jobs:
           path: './backend/src'
           commit-on-changes: 'true'
           commit-message: '코드 컨벤션 확인해라'
-          style-settings-file: './.idea/codeStyles/Project.xml'
+          style-settings-file: './backend/code-style-format.xml'
