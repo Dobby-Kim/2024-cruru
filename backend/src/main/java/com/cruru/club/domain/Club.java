@@ -55,7 +55,9 @@ public class Club {
             throw new ClubNameLengthException(MAX_NAME_LENGTH, name.length());
         }
         if (isContainingInvalidCharacter(name)) {
-            String invalidCharacters = Stream.of(NAME_PATTERN.matcher(name).replaceAll("").split(""))
+            String invalidCharacters = Stream.of(NAME_PATTERN.matcher(name)
+                    .replaceAll("")
+                    .split(""))
                     .distinct()
                     .collect(Collectors.joining(", "));
             throw new ClubNameCharacterException(invalidCharacters);
@@ -67,7 +69,8 @@ public class Club {
     }
 
     private boolean isContainingInvalidCharacter(String name) {
-        return !NAME_PATTERN.matcher(name).matches();
+        return !NAME_PATTERN.matcher(name)
+                .matches();
     }
 
     @Override

@@ -35,11 +35,17 @@ class ClubControllerTest extends ControllerTest {
         String url = String.format("/v1/clubs?member_id=%d", member.getId());
 
         // when&then
-        RestAssured.given().log().all()
+        RestAssured.given()
+                .log()
+                .all()
                 .contentType(ContentType.JSON)
                 .body(request)
-                .when().post(url)
-                .then().log().all().statusCode(201);
+                .when()
+                .post(url)
+                .then()
+                .log()
+                .all()
+                .statusCode(201);
     }
 
     @DisplayName("멤버가 존재하지 않을 경우, 404을 응답한다.")
@@ -52,10 +58,16 @@ class ClubControllerTest extends ControllerTest {
         String url = String.format("/v1/clubs?member_id=%d", invalidMemberId);
 
         // when&then
-        RestAssured.given().log().all()
+        RestAssured.given()
+                .log()
+                .all()
                 .contentType(ContentType.JSON)
                 .body(request)
-                .when().post(url)
-                .then().log().all().statusCode(404);
+                .when()
+                .post(url)
+                .then()
+                .log()
+                .all()
+                .statusCode(404);
     }
 }

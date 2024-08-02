@@ -40,7 +40,7 @@ class ClubServiceTest extends ServiceTest {
 
         // then
         Club club = entityManager.createQuery(
-                        "SELECT c FROM Club c JOIN FETCH c.member WHERE c.id = :id", Club.class)
+                "SELECT c FROM Club c JOIN FETCH c.member WHERE c.id = :id", Club.class)
                 .setParameter("id", clubId)
                 .getSingleResult();
         assertAll(

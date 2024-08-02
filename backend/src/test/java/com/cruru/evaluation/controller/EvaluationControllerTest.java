@@ -52,11 +52,17 @@ class EvaluationControllerTest extends ControllerTest {
         EvaluationCreateRequest request = new EvaluationCreateRequest(score, content);
 
         // when&then
-        RestAssured.given().log().all()
+        RestAssured.given()
+                .log()
+                .all()
                 .contentType(ContentType.JSON)
                 .body(request)
-                .when().post(url)
-                .then().log().all().statusCode(201);
+                .when()
+                .post(url)
+                .then()
+                .log()
+                .all()
+                .statusCode(201);
     }
 
     @DisplayName("지원자가 존재하지 않을 경우, 404를 응답한다.")
@@ -74,11 +80,17 @@ class EvaluationControllerTest extends ControllerTest {
         EvaluationCreateRequest request = new EvaluationCreateRequest(score, content);
 
         // when&then
-        RestAssured.given().log().all()
+        RestAssured.given()
+                .log()
+                .all()
                 .contentType(ContentType.JSON)
                 .body(request)
-                .when().post(url)
-                .then().log().all().statusCode(404);
+                .when()
+                .post(url)
+                .then()
+                .log()
+                .all()
+                .statusCode(404);
     }
 
     @DisplayName("프로세스가 존재하지 않을 경우, 404를 응답한다.")
@@ -96,11 +108,17 @@ class EvaluationControllerTest extends ControllerTest {
         EvaluationCreateRequest request = new EvaluationCreateRequest(score, content);
 
         // when&then
-        RestAssured.given().log().all()
+        RestAssured.given()
+                .log()
+                .all()
                 .contentType(ContentType.JSON)
                 .body(request)
-                .when().post(url)
-                .then().log().all().statusCode(404);
+                .when()
+                .post(url)
+                .then()
+                .log()
+                .all()
+                .statusCode(404);
     }
 
     @DisplayName("평가 조회에 성공할 경우, 200을 응답한다.")
@@ -110,9 +128,15 @@ class EvaluationControllerTest extends ControllerTest {
         String url = String.format("/v1/evaluations?process_id=%d&applicant_id=%d", process.getId(), applicant.getId());
 
         // when&then
-        RestAssured.given().log().all()
+        RestAssured.given()
+                .log()
+                .all()
                 .contentType(ContentType.JSON)
-                .when().get(url)
-                .then().log().all().statusCode(200);
+                .when()
+                .get(url)
+                .then()
+                .log()
+                .all()
+                .statusCode(200);
     }
 }

@@ -35,7 +35,8 @@ class ApplicantRepositoryTest {
         applicantRepository.save(updatedApplicant);
 
         //then
-        Applicant foundApplicant = applicantRepository.findById(saved.getId()).get();
+        Applicant foundApplicant = applicantRepository.findById(saved.getId())
+                .get();
         assertThat(foundApplicant.getName()).isEqualTo("다른이름");
         assertThat(foundApplicant.getEmail()).isEqualTo("다른이메일");
         assertThat(foundApplicant.getPhone()).isEqualTo("다른번호");

@@ -55,8 +55,10 @@ public class ApplicantService {
                         applicant.getCreatedDate()
                 ),
                 new ProcessSimpleResponse(
-                        applicant.getProcess().getId(),
-                        applicant.getProcess().getName()
+                        applicant.getProcess()
+                                .getId(),
+                        applicant.getProcess()
+                                .getName()
                 )
         );
     }

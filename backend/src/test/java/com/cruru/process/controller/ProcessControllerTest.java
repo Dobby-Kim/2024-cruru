@@ -41,9 +41,15 @@ class ProcessControllerTest extends ControllerTest {
         String url = String.format("/v1/processes?dashboard_id=%d", dashboard.getId());
 
         // when&then
-        RestAssured.given().log().all()
-                .when().get(url)
-                .then().log().all().statusCode(200);
+        RestAssured.given()
+                .log()
+                .all()
+                .when()
+                .get(url)
+                .then()
+                .log()
+                .all()
+                .statusCode(200);
     }
 
     @DisplayName("프로세스 조회 실패 시, 404를 응답한다.")
@@ -54,9 +60,15 @@ class ProcessControllerTest extends ControllerTest {
         String url = String.format("/v1/processes?dashboard_id=%d", invalidDashboardId);
 
         // when&then
-        RestAssured.given().log().all()
-                .when().get(url)
-                .then().log().all().statusCode(404);
+        RestAssured.given()
+                .log()
+                .all()
+                .when()
+                .get(url)
+                .then()
+                .log()
+                .all()
+                .statusCode(404);
     }
 
     @DisplayName("프로세스 생성 성공 시, 201을 응답한다.")
@@ -67,11 +79,17 @@ class ProcessControllerTest extends ControllerTest {
         String url = String.format("/v1/processes?dashboard_id=%d", dashboard.getId());
 
         // when&then
-        RestAssured.given().log().all()
+        RestAssured.given()
+                .log()
+                .all()
                 .contentType(ContentType.JSON)
                 .body(processCreateRequest)
-                .when().post(url)
-                .then().log().all().statusCode(201);
+                .when()
+                .post(url)
+                .then()
+                .log()
+                .all()
+                .statusCode(201);
     }
 
     @DisplayName("존재하는 프로세스의 이름과 설명 변경 성공시, 200을 응답한다.")
@@ -83,11 +101,17 @@ class ProcessControllerTest extends ControllerTest {
         String url = String.format("/v1/processes/%d", process.getId());
 
         // when&then
-        RestAssured.given().log().all()
+        RestAssured.given()
+                .log()
+                .all()
                 .contentType(ContentType.JSON)
                 .body(processUpdateRequest)
-                .when().patch(url)
-                .then().log().all().statusCode(200);
+                .when()
+                .patch(url)
+                .then()
+                .log()
+                .all()
+                .statusCode(200);
     }
 
     @DisplayName("프로세스 삭제 성공 시, 204를 응답한다.")
@@ -98,8 +122,14 @@ class ProcessControllerTest extends ControllerTest {
         String url = String.format("/v1/processes/%d", process.getId());
 
         // when&then
-        RestAssured.given().log().all()
-                .when().delete(url)
-                .then().log().all().statusCode(204);
+        RestAssured.given()
+                .log()
+                .all()
+                .when()
+                .delete(url)
+                .then()
+                .log()
+                .all()
+                .statusCode(204);
     }
 }

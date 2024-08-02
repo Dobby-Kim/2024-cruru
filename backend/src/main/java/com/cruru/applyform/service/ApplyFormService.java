@@ -31,59 +31,68 @@ public class ApplyFormService {
 
     private final ApplicantRepository applicantRepository;
 
-        private final AnswerRepository answerRepository;private final QuestionRepository questionRepository;
+    private final AnswerRepository answerRepository;
+    private final QuestionRepository questionRepository;
 
     private final ApplyFormRepository applyFormRepository;
-        private final ProcessRepository processRepository;
+    private final ProcessRepository processRepository;
 
-    @Transactional public ApplyForm create(ApplyFormCreateRequest request,
-                                           Dashboard createdDashboard) {
-            ApplyForm applyForm = toApplyForm(request, createdDashboard);
+    @Transactional
+    public ApplyForm create(
+            ApplyFormCreateRequest request,
+            Dashboard createdDashboard
+    ) {
+        ApplyForm applyForm = toApplyForm(request, createdDashboard);
 
-            ApplyForm savedApplyForm = applyFormRepository.save(applyForm);
-            Long savedId = savedApplyForm.getId();
-            String generatedUrl = APPLY_FORM_BASE_URL + savedId;
-            savedApplyForm.setUrl(generatedUrl);
+        ApplyForm savedApplyForm = applyFormRepository.save(applyForm);
+        Long savedId = savedApplyForm.getId();
+        String generatedUrl = APPLY_FORM_BASE_URL + savedId;
+        savedApplyForm.setUrl(generatedUrl);
 
-            return savedApplyForm;
-     }
+        return savedApplyForm;
+    }
 
     private ApplyForm toApplyForm(
-            ApplyFormCreateRequest request, Dashboard createdDashboard) {
-            return new ApplyForm(request.title(),
-                    request.postingContent(), request.startDate(), request.dueDate(), createdDashboard
+            ApplyFormCreateRequest request, Dashboard createdDashboard
+    ) {
+        return new ApplyForm(request.title(),
+                request.postingContent(), request.startDate(), request.dueDate(), createdDashboard
         );
     }
 
-    public void submit (ApplyFormSubmitRequest request.  , long applyFormId)
-    {
-        validatePersonalDataCollection( request  );
+    public void submit(ApplyFormSubmitRequest request., long applyFormId) {
+        validatePersonalDataCollection(request);
 
-            ApplyForm applyForm = applyFormRepository.findById(applyFormId)
+        ApplyForm applyForm = applyFormRepository.findById(applyFormId)
                 .orElseThrow(ApplyFormNotFoundException::new);
 
         Process firstProcess = processRepository.findFirstByDashboardIdOrderBySequenceAsc(
-                        applyForm.getDashboard().getId()).orElseThrow(InternalServerException::new);
+                applyForm.getDashboard()
+                        .getId())
+                .orElseThrow(InternalServerException::new);
 
         Applicant applicant = applicantRepository.save(
                 new Applicant(
-                        request.applicantCreateRequest().name(),
-                        request.applicantCreateRequest().email(),
-                        request.applicantCreateRequest().phone(),
+                        request.applicantCreateRequest()
+                                .name(),
+                        request.applicantCreateRequest()
+                                .email(),
+                        request.applicantCreateRequest()
+                                .phone(),
                         firstProcess,
                         false
                 )
         );
 
-        for (AnswerCreateRequest answerCreateRequest : request.answerCreateRequest())
+        for (AnswerCreateRequest answerCreateRequest : request.answerCreateRequest()) {
             saveAnswerReplies(answerCreateRequest, applicant);
-
+        }
     }
 
     private void validatePersonalDataCollection(ApplyFormSubmitRequest request) {
-        if (!request.personalDataCollection())
+        if (!request.personalDataCollection()) {
             throw new PersonalDataProcessingException();
-
+        }
     }
 
     private void saveAnswerReplies(AnswerCreateRequest answerCreateRequest, Applicant applicant) {

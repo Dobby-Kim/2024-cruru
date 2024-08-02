@@ -34,7 +34,8 @@ class ClubRepositoryTest {
         clubRepository.save(updateClub);
 
         //then
-        Club findClub = clubRepository.findById(saved.getId()).get();
+        Club findClub = clubRepository.findById(saved.getId())
+                .get();
         assertThat(findClub.getName()).isEqualTo("크루루");
     }
 

@@ -25,6 +25,7 @@ public class ApplyFormController {
             @PathVariable(name = "applyform_id") long applyFormId
     ) {
         applyFormService.submit(request, applyFormId);
-        return ResponseEntity.created(URI.create("/v1/applyform/" + applyFormId)).build();
+        return ResponseEntity.created(URI.create("/v1/applyform/" + applyFormId))
+                .build();
     }
 }

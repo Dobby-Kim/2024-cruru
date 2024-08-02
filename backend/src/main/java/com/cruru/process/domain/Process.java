@@ -61,7 +61,9 @@ public class Process {
             throw new ProcessNameLengthException(MAX_NAME_LENGTH, name.length());
         }
         if (isContainingInvalidCharacter(name)) {
-            String invalidCharacters = Stream.of(NAME_PATTERN.matcher(name).replaceAll("").split(""))
+            String invalidCharacters = Stream.of(NAME_PATTERN.matcher(name)
+                    .replaceAll("")
+                    .split(""))
                     .distinct()
                     .collect(Collectors.joining(", "));
             throw new ProcessNameCharacterException(invalidCharacters);
@@ -73,7 +75,8 @@ public class Process {
     }
 
     private boolean isContainingInvalidCharacter(String name) {
-        return !NAME_PATTERN.matcher(name).matches();
+        return !NAME_PATTERN.matcher(name)
+                .matches();
     }
 
     public void updateName(String name) {
