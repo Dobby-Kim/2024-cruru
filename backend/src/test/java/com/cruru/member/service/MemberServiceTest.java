@@ -37,8 +37,10 @@ class MemberServiceTest extends ServiceTest {
         Optional<Member> member = memberRepository.findById(memberId);
         assertAll(
                 () -> assertThat(member).isPresent(),
-                () -> assertThat(member.get().getEmail()).isEqualTo(email),
-                () -> assertThat(member.get().getPhone()).isEqualTo(phone)
+                () -> assertThat(member.get()
+                        .getEmail()).isEqualTo(email),
+                () -> assertThat(member.get()
+                        .getPhone()).isEqualTo(phone)
         );
     }
 }

@@ -47,10 +47,16 @@ class DashboardControllerTest extends ControllerTest {
         String url = String.format("/v1/dashboards?club_id=%d", club.getId());
 
         // when&then
-        RestAssured.given().log().all()
+        RestAssured.given()
+                .log()
+                .all()
                 .contentType(ContentType.JSON)
                 .body(request)
-                .when().post(url)
-                .then().log().all().statusCode(201);
+                .when()
+                .post(url)
+                .then()
+                .log()
+                .all()
+                .statusCode(201);
     }
 }

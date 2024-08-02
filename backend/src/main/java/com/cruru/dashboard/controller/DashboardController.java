@@ -22,9 +22,11 @@ public class DashboardController {
     @PostMapping
     public ResponseEntity<Void> create(
             @RequestParam(name = "club_id") Long clubId,
-            @RequestBody @Valid DashboardCreateRequest request) {
+            @RequestBody @Valid DashboardCreateRequest request
+    ) {
 
         long dashboardId = dashboardFacade.create(clubId, request);
-        return ResponseEntity.created(URI.create("/v1/dashboards/" + dashboardId)).build();
+        return ResponseEntity.created(URI.create("/v1/dashboards/" + dashboardId))
+                .build();
     }
 }

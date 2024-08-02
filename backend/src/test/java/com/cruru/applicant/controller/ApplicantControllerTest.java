@@ -42,11 +42,17 @@ class ApplicantControllerTest extends ControllerTest {
         applicantRepository.save(applicant);
 
         // when&then
-        RestAssured.given().log().all()
+        RestAssured.given()
+                .log()
+                .all()
                 .contentType(ContentType.JSON)
                 .body(new ApplicantMoveRequest(List.of(applicant.getId())))
-                .when().put("/v1/applicants/move-process/" + next.getId())
-                .then().log().all().statusCode(200);
+                .when()
+                .put("/v1/applicants/move-process/" + next.getId())
+                .then()
+                .log()
+                .all()
+                .statusCode(200);
     }
 
     @DisplayName("지원자의 기본 정보를 읽어오는 데 성공하면 200을 응답한다.")
@@ -57,9 +63,15 @@ class ApplicantControllerTest extends ControllerTest {
         Applicant applicant = applicantRepository.save(createApplicantDobby(process));
 
         // when&then
-        RestAssured.given().log().all()
-                .when().get("/v1/applicants/" + applicant.getId())
-                .then().log().all().statusCode(200);
+        RestAssured.given()
+                .log()
+                .all()
+                .when()
+                .get("/v1/applicants/" + applicant.getId())
+                .then()
+                .log()
+                .all()
+                .statusCode(200);
     }
 
     @DisplayName("지원자의 상세 정보를 읽어오는 데 성공하면 200을 응답한다.")
@@ -71,9 +83,15 @@ class ApplicantControllerTest extends ControllerTest {
         Applicant applicant = applicantRepository.save(createApplicantDobby(process));
 
         // when&then
-        RestAssured.given().log().all()
-                .when().get("/v1/applicants/" + applicant.getId() + "/detail")
-                .then().log().all().statusCode(200);
+        RestAssured.given()
+                .log()
+                .all()
+                .when()
+                .get("/v1/applicants/" + applicant.getId() + "/detail")
+                .then()
+                .log()
+                .all()
+                .statusCode(200);
     }
 
     @DisplayName("지원자를 불합격시키는 데 성공하면 200을 응답한다.")
@@ -83,8 +101,14 @@ class ApplicantControllerTest extends ControllerTest {
         Applicant applicant = applicantRepository.save(new Applicant("name", "email", "phone", null, false));
 
         // when&then
-        RestAssured.given().log().all()
-                .when().patch("/v1/applicants/" + applicant.getId() + "/reject")
-                .then().log().all().statusCode(200);
+        RestAssured.given()
+                .log()
+                .all()
+                .when()
+                .patch("/v1/applicants/" + applicant.getId() + "/reject")
+                .then()
+                .log()
+                .all()
+                .statusCode(200);
     }
 }

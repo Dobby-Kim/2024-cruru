@@ -29,7 +29,8 @@ public class EvaluationController {
     ) {
         evaluationService.create(request, processId, applicantId);
         String url = String.format("/v1/evaluations?process_id=%d&applicant_id=%d", processId, applicantId);
-        return ResponseEntity.created(URI.create(url)).build();
+        return ResponseEntity.created(URI.create(url))
+                .build();
     }
 
     @GetMapping
