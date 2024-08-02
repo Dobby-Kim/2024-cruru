@@ -25,6 +25,7 @@ public class ClubController {
             @RequestParam(name = "member_id") Long memberId
     ) {
         long clubId = clubService.create(request, memberId);
-        return ResponseEntity.created(URI.create("/v1/clubs/" + clubId)).build();
+        return ResponseEntity.created(URI.create("/v1/clubs/" + clubId))
+                .build();
     }
 }
